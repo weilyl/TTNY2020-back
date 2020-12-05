@@ -11,6 +11,10 @@ public class Game {
     String answer;
     boolean status;
    List <Round> rounds;
+    private int id;
+    private int roundscompleted;
+    private int winneruserid;
+    private int nextjudgeid;
 
     public int getId() {
         return id;
@@ -20,13 +24,37 @@ public class Game {
         this.id = id;
     }
 
+    public int getRoundscompleted() {
+        return roundscompleted;
+    }
+
+    public void setRoundscompleted(int roundscompleted) {
+        this.roundscompleted = roundscompleted;
+    }
+
+    public int getWinneruserid() {
+        return winneruserid;
+    }
+
+    public void setWinneruserid(int winneruserid) {
+        this.winneruserid = winneruserid;
+    }
+
+    public int getNextjudgeid() {
+        return nextjudgeid;
+    }
+
+    public void setNextjudgeid(int nextjudgeid) {
+        this.nextjudgeid = nextjudgeid;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 23 * hash + this.id;
-        hash = 23 * hash + Objects.hashCode(this.answer);
-        hash = 23 * hash + (this.status ? 1 : 0);
-        hash = 23 * hash + Objects.hashCode(this.rounds);
+        hash = 17 * hash + this.id;
+        hash = 17 * hash + this.roundscompleted;
+        hash = 17 * hash + this.winneruserid;
+        hash = 17 * hash + this.nextjudgeid;
         return hash;
     }
 
@@ -46,11 +74,14 @@ public class Game {
             return false;
         }
         if (this.status != other.status) {
+        if (this.roundscompleted != other.roundscompleted) {
             return false;
         }
+        if (this.winneruserid != other.winneruserid) {
             return false;
         }
         if (!Objects.equals(this.rounds, other.rounds)) {
+        if (this.nextjudgeid != other.nextjudgeid) {
             return false;
         }
         return true;
@@ -83,6 +114,7 @@ public class Game {
 
     public void setRounds(List<Round> rounds) {
         this.rounds = rounds;
+        return "Game{" + "id=" + id + ", roundscompleted=" + roundscompleted + ", winneruserid=" + winneruserid + ", nextjudgeid=" + nextjudgeid + '}';
     }
 
   
