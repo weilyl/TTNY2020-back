@@ -2,7 +2,7 @@ USE `w24ndqvhdse3h5xv` ;
 
 CREATE TABLE IF NOT EXISTS `w24ndqvhdse3h5xv`.`user` (
   `UID` VARCHAR(50) NOT NULL,
-  `username` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(45),
   PRIMARY KEY (`UID`));
 
 
@@ -23,8 +23,9 @@ CREATE TABLE IF NOT EXISTS `w24ndqvhdse3h5xv`.`ycard` (
 CREATE TABLE IF NOT EXISTS `w24ndqvhdse3h5xv`.`game` (
     `gameId` INT AUTO_INCREMENT NOT NULL,
     `roundsCompleted` INT NULL,
-    `gameWinner` VARCHAR(50) NOT NULL,
-    `nextJudge` VARCHAR(50) NOT NULL,
+    `gameWinner` VARCHAR(50) NULL,
+    `nextJudge` VARCHAR(50) NULL,
+    `entrycode` char(6) NULL,
     PRIMARY KEY (`gameId`),
     FOREIGN KEY (`gameWinner`)
         REFERENCES `w24ndqvhdse3h5xv`.`user` (`UID`),
@@ -32,15 +33,15 @@ CREATE TABLE IF NOT EXISTS `w24ndqvhdse3h5xv`.`game` (
         REFERENCES `w24ndqvhdse3h5xv`.`user` (`UID`)
 );
 
-ALTER TABLE `w24ndqvhdse3h5xv`.`game` AUTO_INCREMENT = 10000;
+-- ALTER TABLE `w24ndqvhdse3h5xv`.`game` AUTO_INCREMENT = 10000;
 
 
 CREATE TABLE IF NOT EXISTS `w24ndqvhdse3h5xv`.`round` (
   `roundId` INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   `gameId` INT NOT NULL,
-  `roundWinner` VARCHAR(50) NOT NULL,
-  `roundXCard` INT NOT NULL,
-  `roundYCard` INT NOT NULL,
+  `roundWinner` VARCHAR(50) NULL,
+  `roundXCard` INT NULL,
+  `roundYCard` INT NULL,
   INDEX `fk_round_game1_idx` (`gameId` ASC) ,
   INDEX `fk_round_user1_idx` (`roundWinner` ASC) ,
   INDEX `fk_round_xcard1_idx` (`roundXCard` ASC) ,
