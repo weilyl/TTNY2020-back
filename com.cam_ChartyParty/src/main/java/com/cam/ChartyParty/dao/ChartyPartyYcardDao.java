@@ -1,14 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.cam.ChartyParty.dao;
+
+import com.cam.ChartyParty.dto.Ycard;
+import java.util.List;
 
 /**
  *
  * @author chelseamiller
  */
 public interface ChartyPartyYcardDao {
-    
+        
+    List<Ycard> getAll() throws DataNotFoundException;
+
+    Ycard findById(String id) throws DataNotFoundException;
 }
