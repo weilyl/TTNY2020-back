@@ -7,10 +7,6 @@ package com.cam.ChartyParty.dto;
  */
 public class Game {
 
-    int id;
-    String answer;
-    boolean status;
-   List <Round> rounds;
     private int id;
     private int roundscompleted;
     private int winneruserid;
@@ -73,14 +69,12 @@ public class Game {
         if (this.id != other.id) {
             return false;
         }
-        if (this.status != other.status) {
         if (this.roundscompleted != other.roundscompleted) {
             return false;
         }
         if (this.winneruserid != other.winneruserid) {
             return false;
         }
-        if (!Objects.equals(this.rounds, other.rounds)) {
         if (this.nextjudgeid != other.nextjudgeid) {
             return false;
         }
@@ -89,31 +83,6 @@ public class Game {
 
     @Override
     public String toString() {
-        return "Game{" + "id=" + id + ", answer=" + answer + ", status=" + status + ", rounds=" + rounds + '}';
-    }
-
-    public String getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    public List<Round> getRounds() {
-        return rounds;
-    }
-
-    public void setRounds(List<Round> rounds) {
-        this.rounds = rounds;
         return "Game{" + "id=" + id + ", roundscompleted=" + roundscompleted + ", winneruserid=" + winneruserid + ", nextjudgeid=" + nextjudgeid + '}';
     }
 
