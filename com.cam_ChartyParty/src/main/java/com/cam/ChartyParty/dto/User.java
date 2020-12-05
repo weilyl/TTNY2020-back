@@ -10,16 +10,15 @@ import java.util.Objects;
  * @author chelseamiller
  */
 public class User {
-    private int id;
+    private String id;
     private String username;
-   
-    private List<Ycard> hand = new ArrayList();
+   private List<Ycard> hand = new ArrayList();
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -42,9 +41,9 @@ public class User {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 17 * hash + this.id;
-        hash = 17 * hash + Objects.hashCode(this.username);
-        hash = 17 * hash + Objects.hashCode(this.hand);
+        hash = 23 * hash + Objects.hashCode(this.id);
+        hash = 23 * hash + Objects.hashCode(this.username);
+        hash = 23 * hash + Objects.hashCode(this.hand);
         return hash;
     }
 
@@ -60,7 +59,7 @@ public class User {
             return false;
         }
         final User other = (User) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         if (!Objects.equals(this.username, other.username)) {
@@ -76,7 +75,8 @@ public class User {
     public String toString() {
         return "User{" + "id=" + id + ", username=" + username + ", hand=" + hand + '}';
     }
-    
+
+
     
     
     

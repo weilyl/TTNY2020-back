@@ -11,7 +11,7 @@ public class Round {
 
     private int id;
     private int gameid;
-    private int winneruserid;
+    private String winneruserid;
     private int xcardid;
     private int winnerycardid;
 
@@ -31,11 +31,11 @@ public class Round {
         this.gameid = gameid;
     }
 
-    public int getWinneruserid() {
+    public String getWinneruserid() {
         return winneruserid;
     }
 
-    public void setWinneruserid(int winneruserid) {
+    public void setWinneruserid(String winneruserid) {
         this.winneruserid = winneruserid;
     }
 
@@ -57,12 +57,12 @@ public class Round {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 37 * hash + this.id;
-        hash = 37 * hash + this.gameid;
-        hash = 37 * hash + this.winneruserid;
-        hash = 37 * hash + this.xcardid;
-        hash = 37 * hash + this.winnerycardid;
+        int hash = 7;
+        hash = 83 * hash + this.id;
+        hash = 83 * hash + this.gameid;
+        hash = 83 * hash + Objects.hashCode(this.winneruserid);
+        hash = 83 * hash + this.xcardid;
+        hash = 83 * hash + this.winnerycardid;
         return hash;
     }
 
@@ -84,13 +84,13 @@ public class Round {
         if (this.gameid != other.gameid) {
             return false;
         }
-        if (this.winneruserid != other.winneruserid) {
-            return false;
-        }
         if (this.xcardid != other.xcardid) {
             return false;
         }
         if (this.winnerycardid != other.winnerycardid) {
+            return false;
+        }
+        if (!Objects.equals(this.winneruserid, other.winneruserid)) {
             return false;
         }
         return true;
@@ -100,8 +100,6 @@ public class Round {
     public String toString() {
         return "Round{" + "id=" + id + ", gameid=" + gameid + ", winneruserid=" + winneruserid + ", xcardid=" + xcardid + ", winnerycardid=" + winnerycardid + '}';
     }
-    
-    
 
    
 
