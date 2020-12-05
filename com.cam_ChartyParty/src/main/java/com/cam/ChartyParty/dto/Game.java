@@ -1,6 +1,8 @@
 
 package com.cam.ChartyParty.dto;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -13,6 +15,8 @@ public class Game {
     private int roundscompleted;
     private String winneruserid;
     private String nextjudgeid;
+    private List<User> users = new ArrayList();
+    
 
     public int getId() {
         return id;
@@ -46,13 +50,22 @@ public class Game {
         this.nextjudgeid = nextjudgeid;
     }
 
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 17 * hash + this.id;
-        hash = 17 * hash + this.roundscompleted;
-        hash = 17 * hash + Objects.hashCode(this.winneruserid);
-        hash = 17 * hash + Objects.hashCode(this.nextjudgeid);
+        int hash = 7;
+        hash = 47 * hash + this.id;
+        hash = 47 * hash + this.roundscompleted;
+        hash = 47 * hash + Objects.hashCode(this.winneruserid);
+        hash = 47 * hash + Objects.hashCode(this.nextjudgeid);
+        hash = 47 * hash + Objects.hashCode(this.users);
         return hash;
     }
 
@@ -80,16 +93,19 @@ public class Game {
         if (!Objects.equals(this.nextjudgeid, other.nextjudgeid)) {
             return false;
         }
+        if (!Objects.equals(this.users, other.users)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Game{" + "id=" + id + ", roundscompleted=" + roundscompleted + ", winneruserid=" + winneruserid + ", nextjudgeid=" + nextjudgeid + '}';
+        return "Game{" + "id=" + id + ", roundscompleted=" + roundscompleted + ", winneruserid=" + winneruserid + ", nextjudgeid=" + nextjudgeid + ", users=" + users + '}';
     }
 
-
-   
-  
+    
+    
+    
 
 }
