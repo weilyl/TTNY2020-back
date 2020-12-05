@@ -9,19 +9,11 @@ import java.util.Objects;
  */
 public class Round {
 
-    int id;
-    int Game_id;
-    String timestamp;
-    String guess;
-    String result;
-
-    public int getGameId() {
-        return Game_id;
-    }
-
-    public void setGameId(int gameId) {
-        this.Game_id = gameId;
-    }
+    private int id;
+    private int gameid;
+    private int winneruserid;
+    private int xcardid;
+    private int winnerycardid;
 
     public int getId() {
         return id;
@@ -31,40 +23,46 @@ public class Round {
         this.id = id;
     }
 
-    public String getTimestamp() {
-        return timestamp;
+    public int getGameid() {
+        return gameid;
     }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
+    public void setGameid(int gameid) {
+        this.gameid = gameid;
     }
 
-    public String getGuess() {
-        return guess;
+    public int getWinneruserid() {
+        return winneruserid;
     }
 
-    public void setGuess(String guess) {
-        this.guess = guess;
+    public void setWinneruserid(int winneruserid) {
+        this.winneruserid = winneruserid;
     }
 
-  
-
-    public String getResult() {
-        return result;
+    public int getXcardid() {
+        return xcardid;
     }
 
-    public void setResult(String result) {
-        this.result = result;
+    public void setXcardid(int xcardid) {
+        this.xcardid = xcardid;
+    }
+
+    public int getWinnerycardid() {
+        return winnerycardid;
+    }
+
+    public void setWinnerycardid(int winnerycardid) {
+        this.winnerycardid = winnerycardid;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 71 * hash + this.id;
-        hash = 71 * hash + this.Game_id;
-        hash = 71 * hash + Objects.hashCode(this.timestamp);
-        hash = 71 * hash + Objects.hashCode(this.guess);
-        hash = 71 * hash + Objects.hashCode(this.result);
+        int hash = 5;
+        hash = 37 * hash + this.id;
+        hash = 37 * hash + this.gameid;
+        hash = 37 * hash + this.winneruserid;
+        hash = 37 * hash + this.xcardid;
+        hash = 37 * hash + this.winnerycardid;
         return hash;
     }
 
@@ -83,16 +81,16 @@ public class Round {
         if (this.id != other.id) {
             return false;
         }
-        if (this.Game_id != other.Game_id) {
+        if (this.gameid != other.gameid) {
             return false;
         }
-        if (!Objects.equals(this.guess, other.guess)) {
+        if (this.winneruserid != other.winneruserid) {
             return false;
         }
-        if (!Objects.equals(this.result, other.result)) {
+        if (this.xcardid != other.xcardid) {
             return false;
         }
-        if (!Objects.equals(this.timestamp, other.timestamp)) {
+        if (this.winnerycardid != other.winnerycardid) {
             return false;
         }
         return true;
@@ -100,7 +98,11 @@ public class Round {
 
     @Override
     public String toString() {
-        return "Round{" + "id=" + id + ", Game_id=" + Game_id + ", timestamp=" + timestamp + ", guess=" + guess + ", result=" + result + '}';
+        return "Round{" + "id=" + id + ", gameid=" + gameid + ", winneruserid=" + winneruserid + ", xcardid=" + xcardid + ", winnerycardid=" + winnerycardid + '}';
     }
+    
+    
+
+   
 
 }

@@ -1,11 +1,6 @@
 
 package com.cam.ChartyParty.dto;
 
-
-
-import java.util.List;
-import java.util.Objects;
-
 /**
  *
  * @author chelseamiller
@@ -53,7 +48,6 @@ public class Game {
         if (this.status != other.status) {
             return false;
         }
-        if (!Objects.equals(this.answer, other.answer)) {
             return false;
         }
         if (!Objects.equals(this.rounds, other.rounds)) {
