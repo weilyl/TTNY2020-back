@@ -11,13 +11,9 @@ public interface ChartyPartyGameDao {
 
     Game add(Game game);
 
- 
     Game findByEntryCode(String entryCode) throws DataNotFoundException;
 
-    
     boolean update(Game game);
 
-    
-    boolean deleteById(int id);
+    void deleteById(int id);
 }
-
