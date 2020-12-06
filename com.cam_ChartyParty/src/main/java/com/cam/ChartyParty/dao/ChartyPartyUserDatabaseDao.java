@@ -86,10 +86,11 @@ public class ChartyPartyUserDatabaseDao implements ChartyPartyUserDao {
 
     @Override
     public User addUser(User user) {
-        final String INSERT_USER = "INSERT INTO user(UID) "
-                + "VALUES(?)";
+        final String INSERT_USER = "INSERT INTO user(UID, username) "
+                + "VALUES(?, ?)";
         jdbc.update(INSERT_USER,
-                user.getId());
+                user.getId(),
+                user.getUsername());
 
         return user;
 
