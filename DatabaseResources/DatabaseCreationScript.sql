@@ -26,7 +26,6 @@ CREATE TABLE IF NOT EXISTS `w24ndqvhdse3h5xv`.`game` (
     `gameWinner` VARCHAR(50) NULL,
     `nextJudge` VARCHAR(50) NULL,
     `entrycode` char(6) NULL,
-   `startTime` BIGINT(19) NOT NULL,
     PRIMARY KEY (`gameId`),
     FOREIGN KEY (`gameWinner`)
         REFERENCES `w24ndqvhdse3h5xv`.`user` (`UID`),
@@ -35,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `w24ndqvhdse3h5xv`.`game` (
 );
 
 -- ALTER TABLE `w24ndqvhdse3h5xv`.`game` AUTO_INCREMENT = 10000;
-
+Alter table `w24ndqvhdse3h5xv`.`game`  ADD `startTime` BIGINT(19) NOT NULL AFTER `entrycode`;
 
 CREATE TABLE IF NOT EXISTS `w24ndqvhdse3h5xv`.`round` (
   `roundId` INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
@@ -43,7 +42,6 @@ CREATE TABLE IF NOT EXISTS `w24ndqvhdse3h5xv`.`round` (
   `roundWinner` VARCHAR(50) NULL,
   `roundXCard` INT NULL,
   `roundYCard` INT NULL,
-  `endTime` BIGINT(19) NOT NULL,
   INDEX `fk_round_game1_idx` (`gameId` ASC) ,
   INDEX `fk_round_user1_idx` (`roundWinner` ASC) ,
   INDEX `fk_round_xcard1_idx` (`roundXCard` ASC) ,
@@ -61,6 +59,7 @@ CREATE TABLE IF NOT EXISTS `w24ndqvhdse3h5xv`.`round` (
     FOREIGN KEY (`roundYCard`)
     REFERENCES `w24ndqvhdse3h5xv`.`ycard` (`yCardId`));
 
+Alter table `w24ndqvhdse3h5xv`.`round`  ADD `endTime` BIGINT(19) NOT NULL AFTER `roundYCard`;
 
 CREATE TABLE IF NOT EXISTS `w24ndqvhdse3h5xv`.`gameuserycard` (
   `user_UID` VARCHAR(50) NOT NULL,
