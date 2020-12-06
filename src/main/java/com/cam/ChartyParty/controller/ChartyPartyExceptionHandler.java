@@ -2,7 +2,6 @@ package com.cam.ChartyParty.controller;
 
 import com.cam.ChartyParty.dao.DataNotFoundException;
 import com.cam.ChartyParty.service.BadUserInputException;
-import com.mysql.cj.jdbc.exceptions.MysqlDataTruncation;
 import java.sql.SQLIntegrityConstraintViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -43,40 +42,27 @@ public class ChartyPartyExceptionHandler extends ResponseEntityExceptionHandler 
         return new ResponseEntity<>(err, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
-    @ExceptionHandler(MysqlDataTruncation.class)
-    public final ResponseEntity<Error> handleMysqlDataTruncationException(
-            MysqlDataTruncation ex,
-            WebRequest request) {
-
-        Error err = new Error();
-        err.setMessage(ex.getMessage());
-        return new ResponseEntity<>(err, HttpStatus.UNPROCESSABLE_ENTITY);
-    }
-    
-       @ExceptionHandler(StringIndexOutOfBoundsException.class)
+    @ExceptionHandler(StringIndexOutOfBoundsException.class)
     public final ResponseEntity<Error> handleStringIndexOutOfBoundsException(
-           StringIndexOutOfBoundsException ex,
+            StringIndexOutOfBoundsException ex,
             WebRequest request) {
 
         Error err = new Error();
         err.setMessage(ex.getMessage());
         return new ResponseEntity<>(err, HttpStatus.UNPROCESSABLE_ENTITY);
     }
-    
-    
-         @ExceptionHandler(BadUserInputException.class)
+
+    @ExceptionHandler(BadUserInputException.class)
     public final ResponseEntity<Error> handleBadUserInputException(
-           BadUserInputException ex,
+            BadUserInputException ex,
             WebRequest request) {
 
         Error err = new Error();
         err.setMessage(ex.getMessage());
         return new ResponseEntity<>(err, HttpStatus.UNPROCESSABLE_ENTITY);
     }
-    
-    
-    
-/*
+
+    /*
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public final ResponseEntity<Error> handleHttpMessageNotReadableExceptionException(
             HttpMessageNotReadableException ex,
@@ -86,5 +72,5 @@ public class ChartyPartyExceptionHandler extends ResponseEntityExceptionHandler 
         err.setMessage(ex.getMessage());
         return new ResponseEntity<>(err, HttpStatus.UNPROCESSABLE_ENTITY);
     }
-*/
+     */
 }
