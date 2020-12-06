@@ -18,6 +18,7 @@ public interface ChartyPartyGameDao {
     boolean update(Game game);
 
     
-    boolean deleteById(int id);
+    void deleteById(int id);
+    
 }
 

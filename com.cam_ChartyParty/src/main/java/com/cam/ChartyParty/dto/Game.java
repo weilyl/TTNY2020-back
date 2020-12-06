@@ -21,7 +21,7 @@ public class Game {
     private String nextjudgeid;
     private List<User> users = new ArrayList();
     private Set<Xcard> xcards= new HashSet();
-    private LocalDateTime startTime;
+    private long startTime;
     
 
     public int getId() {
@@ -80,25 +80,25 @@ public class Game {
         this.xcards = xcards;
     }
 
-    public LocalDateTime getStartTime() {
+    public long getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
+    public void setStartTime(long startTime) {
         this.startTime = startTime;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 83 * hash + this.id;
-        hash = 83 * hash + Objects.hashCode(this.entrycode);
-        hash = 83 * hash + this.roundscompleted;
-        hash = 83 * hash + Objects.hashCode(this.winneruserid);
-        hash = 83 * hash + Objects.hashCode(this.nextjudgeid);
-        hash = 83 * hash + Objects.hashCode(this.users);
-        hash = 83 * hash + Objects.hashCode(this.xcards);
-        hash = 83 * hash + Objects.hashCode(this.startTime);
+        int hash = 7;
+        hash = 29 * hash + this.id;
+        hash = 29 * hash + Objects.hashCode(this.entrycode);
+        hash = 29 * hash + this.roundscompleted;
+        hash = 29 * hash + Objects.hashCode(this.winneruserid);
+        hash = 29 * hash + Objects.hashCode(this.nextjudgeid);
+        hash = 29 * hash + Objects.hashCode(this.users);
+        hash = 29 * hash + Objects.hashCode(this.xcards);
+        hash = 29 * hash + (int) (this.startTime ^ (this.startTime >>> 32));
         return hash;
     }
 
@@ -120,6 +120,9 @@ public class Game {
         if (this.roundscompleted != other.roundscompleted) {
             return false;
         }
+        if (this.startTime != other.startTime) {
+            return false;
+        }
         if (!Objects.equals(this.entrycode, other.entrycode)) {
             return false;
         }
@@ -135,9 +138,6 @@ public class Game {
         if (!Objects.equals(this.xcards, other.xcards)) {
             return false;
         }
-        if (!Objects.equals(this.startTime, other.startTime)) {
-            return false;
-        }
         return true;
     }
 
@@ -146,7 +146,7 @@ public class Game {
         return "Game{" + "id=" + id + ", entrycode=" + entrycode + ", roundscompleted=" + roundscompleted + ", winneruserid=" + winneruserid + ", nextjudgeid=" + nextjudgeid + ", users=" + users + ", xcards=" + xcards + ", startTime=" + startTime + '}';
     }
 
-    
+
     
     
 
