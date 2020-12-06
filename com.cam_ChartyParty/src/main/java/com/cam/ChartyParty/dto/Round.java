@@ -15,7 +15,7 @@ public class Round {
     private String winneruserid;
     private int xcardid;
     private int winnerycardid;
-    private LocalDateTime endTime;
+    private long endTime;
 
     public int getId() {
         return id;
@@ -57,23 +57,23 @@ public class Round {
         this.winnerycardid = winnerycardid;
     }
 
-    public LocalDateTime getEndTime() {
+    public long getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(LocalDateTime endTime) {
+    public void setEndTime(long endTime) {
         this.endTime = endTime;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + this.id;
-        hash = 89 * hash + this.gameid;
-        hash = 89 * hash + Objects.hashCode(this.winneruserid);
-        hash = 89 * hash + this.xcardid;
-        hash = 89 * hash + this.winnerycardid;
-        hash = 89 * hash + Objects.hashCode(this.endTime);
+        int hash = 5;
+        hash = 61 * hash + this.id;
+        hash = 61 * hash + this.gameid;
+        hash = 61 * hash + Objects.hashCode(this.winneruserid);
+        hash = 61 * hash + this.xcardid;
+        hash = 61 * hash + this.winnerycardid;
+        hash = 61 * hash + (int) (this.endTime ^ (this.endTime >>> 32));
         return hash;
     }
 
@@ -101,10 +101,10 @@ public class Round {
         if (this.winnerycardid != other.winnerycardid) {
             return false;
         }
-        if (!Objects.equals(this.winneruserid, other.winneruserid)) {
+        if (this.endTime != other.endTime) {
             return false;
         }
-        if (!Objects.equals(this.endTime, other.endTime)) {
+        if (!Objects.equals(this.winneruserid, other.winneruserid)) {
             return false;
         }
         return true;
@@ -115,8 +115,6 @@ public class Round {
         return "Round{" + "id=" + id + ", gameid=" + gameid + ", winneruserid=" + winneruserid + ", xcardid=" + xcardid + ", winnerycardid=" + winnerycardid + ", endTime=" + endTime + '}';
     }
 
-    
-    
-    
+
 
 }
