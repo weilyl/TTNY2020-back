@@ -20,14 +20,14 @@ INSERT INTO `w24ndqvhdse3h5xv`.`ycard` (`yCardId`, `text`) VALUES ('5', 'Ostrich
 INSERT INTO `w24ndqvhdse3h5xv`.`ycard` (`yCardId`, `text`) VALUES ('6', 'OompaLoompa');
 INSERT INTO `w24ndqvhdse3h5xv`.`ycard` (`yCardId`, `text`) VALUES ('7', 'Tiger');
 
-INSERT INTO `w24ndqvhdse3h5xv`.`game` (`roundsCompleted`, `gameWinner`, `nextJudge`, `entrycode`) VALUES ('3', NULL, '123456', '123ABC');
-INSERT INTO `w24ndqvhdse3h5xv`.`game` (`roundsCompleted`, `gameWinner`, `nextJudge`, `entrycode`) VALUES ('2', NULL, '567890', 'RESPCT');
+INSERT INTO `w24ndqvhdse3h5xv`.`game` (`roundsCompleted`, `gameWinner`, `nextJudge`, `entrycode`, `entrycode`,`startTime`) VALUES ('3', NULL, '123456', '123ABC', '9999-12-31 23:59:59');
+INSERT INTO `w24ndqvhdse3h5xv`.`game` (`roundsCompleted`, `gameWinner`, `nextJudge`, `entrycode`, `entrycode`, `startTime`) VALUES ('2', NULL, '567890', 'RESPCT', '9999-12-31 23:59:59');
 
-INSERT INTO `w24ndqvhdse3h5xv`.`round` (`gameId`, `roundWinner`, `roundXCard`, `roundYCard`) VALUES ('1', '123456', '1', '3');
-INSERT INTO `w24ndqvhdse3h5xv`.`round` (`gameId`, `roundWinner`, `roundXCard`, `roundYCard`) VALUES ('1', '469033', '2', '4');
-INSERT INTO `w24ndqvhdse3h5xv`.`round` (`gameId`, `roundWinner`, `roundXCard`, `roundYCard`) VALUES ('1', '892733', '3', '2');
-INSERT INTO `w24ndqvhdse3h5xv`.`round` (`gameId`, `roundWinner`, `roundXCard`, `roundYCard`) VALUES ('2', '469033', '4', '5');
-INSERT INTO `w24ndqvhdse3h5xv`.`round` (`gameId`, `roundWinner`, `roundXCard`, `roundYCard`) VALUES ('2', '123456', '5', '7');
+INSERT INTO `w24ndqvhdse3h5xv`.`round` (`gameId`, `roundWinner`, `roundXCard`, `roundYCard`, `endTime`) VALUES ('1', '123456', '1', '3', '9999-12-31 23:59:59');
+INSERT INTO `w24ndqvhdse3h5xv`.`round` (`gameId`, `roundWinner`, `roundXCard`, `roundYCard`, `endTime`) VALUES ('1', '469033', '2', '4', '9999-12-31 23:59:59');
+INSERT INTO `w24ndqvhdse3h5xv`.`round` (`gameId`, `roundWinner`, `roundXCard`, `roundYCard`, `endTime`) VALUES ('1', '892733', '3', '2', '9999-12-31 23:59:59');
+INSERT INTO `w24ndqvhdse3h5xv`.`round` (`gameId`, `roundWinner`, `roundXCard`, `roundYCard`, `endTime`) VALUES ('2', '469033', '4', '5', '9999-12-31 23:59:59');
+INSERT INTO `w24ndqvhdse3h5xv`.`round` (`gameId`, `roundWinner`, `roundXCard`, `roundYCard`, `endTime`) VALUES ('2', '123456', '5', '7', '9999-12-31 23:59:59');
 
 INSERT INTO `w24ndqvhdse3h5xv`.`gameuserycard` (`user_UID`, `game_gameId`, `ycard_yCardId`) VALUES ('123456', '1', '3');
 INSERT INTO `w24ndqvhdse3h5xv`.`gameuserycard` (`user_UID`, `game_gameId`, `ycard_yCardId`) VALUES ('123456', '1', '4');
