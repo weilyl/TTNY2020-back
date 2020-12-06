@@ -13,6 +13,7 @@ public class User {
     private String id;
     private String username;
     private List<Ycard> hand = new ArrayList();
+    private int score;
 
     public String getId() {
         return id;
@@ -37,6 +38,17 @@ public class User {
     public void setHand(List<Ycard> hand) {
         this.hand = hand;
     }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+
+    
 
     @Override
     public int hashCode() {
@@ -73,7 +85,8 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", username=" + username + ", hand=" + hand + '}';
+        return "User{" + "id=" + id + ", username=" + username + ", hand=" + hand + ", score=" + score + '}';
     }
 
+  
 }
