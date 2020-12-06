@@ -63,6 +63,7 @@ public class ChartyPartyController {
         //make the currentGame = this game just added to the DB
         String entrycode = service.generateEntryCode();
         currentGame.setEntrycode(entrycode);
+        currentGame.setStartTime(service.getTimeForGame());
         currentGame = gameDao.add(currentGame);
         return currentGame;
     }
