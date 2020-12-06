@@ -19,15 +19,15 @@ import org.springframework.jdbc.core.RowMapper;
  *
  * @author chelseamiller
  */
-public class ChartyPartyYcardDatabaseDao implements ChartyPartyYcardDao{
-    
-      @Autowired
+public class ChartyPartyYcardDatabaseDao implements ChartyPartyYcardDao {
+
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Override
     public List<Ycard> getAll() throws DataNotFoundException {
-        
-             final String sql = "SELECT y.yCardId, y.text FROM ycard y;";
+
+        final String sql = "SELECT y.yCardId, y.text FROM ycard y;";
         List<Ycard> allYcards = jdbcTemplate.query(sql, new YcardMapper());
 
         if (allYcards.isEmpty()) {
@@ -38,8 +38,8 @@ public class ChartyPartyYcardDatabaseDao implements ChartyPartyYcardDao{
 
     @Override
     public Ycard findById(String id) throws DataNotFoundException {
-        
-              Ycard ycard = null;
+
+        Ycard ycard = null;
 
         final String sql = "SELECT yCardId, text"
                 + "FROM ycard WHERE yCardId = ?;";
@@ -51,18 +51,16 @@ public class ChartyPartyYcardDatabaseDao implements ChartyPartyYcardDao{
         }
 
         return ycard;
-        
+
     }
-    
-    
-        private static final class YcardMapper implements RowMapper<Ycard> {
+
+    public static final class YcardMapper implements RowMapper<Ycard> {
 
         @Override
         public Ycard mapRow(ResultSet rs, int index) throws SQLException {
             Ycard ycard = new Ycard();
             ycard.setId(rs.getInt("yCardId"));
             ycard.setText(rs.getString("text"));
-          
 
             return ycard;
         }
