@@ -19,7 +19,6 @@ import org.springframework.stereotype.Repository;
  * @author chelseamiller
  */
 @Repository
-@Profile("database")
 public class ChartyPartyGameDatabaseDao implements ChartyPartyGameDao {
 
     @Autowired

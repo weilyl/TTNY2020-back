@@ -81,7 +81,7 @@ public class ChartyPartyController {
         if (usersOfCurrentGame.size() > 2) {
             response.setStatus(200);
         } else {
-            response.sendError(418, "Not ready to start");
+            response.sendError(418, "User Added to Game. Game is not ready to start");
         }
 
         return new User();
