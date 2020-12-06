@@ -12,6 +12,7 @@ import java.util.Objects;
 public class Game {
 
     private int id;
+    private String entrycode;
     private int roundscompleted;
     private String winneruserid;
     private String nextjudgeid;
@@ -58,14 +59,23 @@ public class Game {
         this.users = users;
     }
 
+    public String getEntrycode() {
+        return entrycode;
+    }
+
+    public void setEntrycode(String entrycode) {
+        this.entrycode = entrycode;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + this.id;
-        hash = 47 * hash + this.roundscompleted;
-        hash = 47 * hash + Objects.hashCode(this.winneruserid);
-        hash = 47 * hash + Objects.hashCode(this.nextjudgeid);
-        hash = 47 * hash + Objects.hashCode(this.users);
+        int hash = 3;
+        hash = 97 * hash + this.id;
+        hash = 97 * hash + Objects.hashCode(this.entrycode);
+        hash = 97 * hash + this.roundscompleted;
+        hash = 97 * hash + Objects.hashCode(this.winneruserid);
+        hash = 97 * hash + Objects.hashCode(this.nextjudgeid);
+        hash = 97 * hash + Objects.hashCode(this.users);
         return hash;
     }
 
@@ -87,6 +97,9 @@ public class Game {
         if (this.roundscompleted != other.roundscompleted) {
             return false;
         }
+        if (!Objects.equals(this.entrycode, other.entrycode)) {
+            return false;
+        }
         if (!Objects.equals(this.winneruserid, other.winneruserid)) {
             return false;
         }
@@ -101,8 +114,10 @@ public class Game {
 
     @Override
     public String toString() {
-        return "Game{" + "id=" + id + ", roundscompleted=" + roundscompleted + ", winneruserid=" + winneruserid + ", nextjudgeid=" + nextjudgeid + ", users=" + users + '}';
+        return "Game{" + "id=" + id + ", entrycode=" + entrycode + ", roundscompleted=" + roundscompleted + ", winneruserid=" + winneruserid + ", nextjudgeid=" + nextjudgeid + ", users=" + users + '}';
     }
+    
+    
 
     
     

@@ -11,9 +11,8 @@ public interface ChartyPartyGameDao {
 
     Game add(Game game);
 
-    List<Game> getAll() throws DataNotFoundException;
-
-    Game findById(int id) throws DataNotFoundException;
+ 
+    Game findByEntryCode(String entryCode) throws DataNotFoundException;
 
     
     boolean update(Game game);

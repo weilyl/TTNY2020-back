@@ -1,24 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.cam.ChartyParty.dao;
 
-import com.cam.ChartyParty.dto.Game;
 import com.cam.ChartyParty.dto.Ycard;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author chelseamiller
  */
+@Repository
+@Profile("database")
 public class ChartyPartyYcardDatabaseDao implements ChartyPartyYcardDao{
     
       @Autowired
