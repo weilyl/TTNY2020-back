@@ -132,6 +132,11 @@ public class ChartyPartyController {
         //
     }
 
+    @PostMapping("/endGame")
+    public void clearCurrentGame() {
+        currentGame = new Game();
+    }
+
 }
 
 //    
