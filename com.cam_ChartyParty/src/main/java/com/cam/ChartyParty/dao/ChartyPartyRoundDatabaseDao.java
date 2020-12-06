@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -30,40 +29,23 @@ public class ChartyPartyRoundDatabaseDao implements ChartyPartyRoundDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    //Get all rounds from Game
-    /*
-    @Override
-    public List<Round> findRoundsByGameId(int gameId) {
-
-        final String sql = "SELECT id, TimeOfGuess, Guess, Score "
-                + "FROM Round "
-                + "WHERE Game_id = ?"
-                + " ORDER BY TimeOfGuess DESC;";
-
-        return jdbcTemplate.query(sql, new RoundMapper(), gameId);
-    }
-     */
     @Override
     public List<Round> findRoundsByGameId(int gameId) throws DataNotFoundException {
-        final String sql = "SELECT id, Game_id, TimeOfGuess, Guess, Score FROM Round;";
-        List<Round> allRounds = jdbcTemplate.query(sql, new RoundMapper());
-        List<Round> roundsFromGame = new ArrayList<>();
-        for (Round i : allRounds) {
-            if (i.getGameId() == gameId) {
-                roundsFromGame.add(i);
-            }
-        }
-        if (roundsFromGame.size() == 0) {
+        final String sql = "SELECT roundId, gameId, roundWinner, roundXCard, roundYCard "
+                + "FROM round"
+                + "WHERE gameId = ?;";
+        List<Round> allRounds = jdbcTemplate.query(sql, new RoundMapper(), gameId);
+
+        if (allRounds.size() == 0) {
             throw new DataNotFoundException("No rounds found for game id# " + gameId);
         }
 
-        return roundsFromGame;
+        return allRounds;
     }
 
-    //CRUD FUNCTIONS (irrelevant to game play) 
     @Override
     public Round add(Round round) {
-        final String sql = "INSERT INTO Round(Game_id, TimeOfGuess, Guess, Score) VALUES(?,?,?,?);";
+        final String sql = "INSERT INTO Round(gameId, roundXCard) VALUES(?,?);";
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 
@@ -73,10 +55,8 @@ public class ChartyPartyRoundDatabaseDao implements ChartyPartyRoundDao {
                     sql,
                     Statement.RETURN_GENERATED_KEYS);
 
-            statement.setInt(1, round.getGameId());
-            statement.setString(2, round.getTimestamp());
-            statement.setString(3, round.getGuess());
-            statement.setString(4, round.getResult());
+            statement.setInt(1, round.getGameid());
+            statement.setInt(2, round.getXcardid());
 
             return statement;
 
@@ -88,47 +68,32 @@ public class ChartyPartyRoundDatabaseDao implements ChartyPartyRoundDao {
     }
 
     @Override
-    public List<Round> getAll() throws DataNotFoundException {
-        final String sql = "SELECT id, Game_id, TimeOfGuess, Guess, Score FROM Round;";
-        List<Round> allRounds= jdbcTemplate.query(sql, new RoundMapper());
-        
-        if(allRounds.isEmpty()){
-            throw new DataNotFoundException("No rounds exist.");
-        }
-        
-        return allRounds;
-    }
-
-    @Override
     public Round findById(int id) throws DataNotFoundException {
         Round round = new Round();
-        final String sql = "SELECT id, Game_id, TimeOfGuess, Guess, Score "
-                + "FROM Round "
-                + "WHERE id = ?;";
+        final String sql = "SELECT roundId, gameId, roundWinner, roundXCard, roundYCard "
+                + "FROM round "
+                + "WHERE roundId = ?;";
 
-        round=jdbcTemplate.queryForObject(sql, new RoundMapper(), id);
-        
-        if(round==null){
-            throw new DataNotFoundException("Round id#"+ id+" does not exist.");
+        round = jdbcTemplate.queryForObject(sql, new RoundMapper(), id);
+
+        if (round == null) {
+            throw new DataNotFoundException("Round id#" + id + " does not exist.");
         }
-        
+
         return round;
     }
 
     @Override
     public boolean update(Round round) {
         final String sql = "UPDATE Round SET "
-                + "Game_id = ?, "
-                + "TimeOfGuess = ?, "
-                + "Guess = ?, "
-                + "Score = ? "
-                + "WHERE id = ?;";
+                + "roundWinner = ?, "
+                + "roundYCard = ? "
+                + "WHERE roundId = ?;";
 
         return jdbcTemplate.update(sql,
-                round.getGameId(),
-                round.getTimestamp(),
-                round.getGuess(),
-                round.getResult(),
+                round.getWinneruserid(),
+                round.getWinnerycardid(),
+             
                 round.getId()) > 0;
     }
 
@@ -136,8 +101,7 @@ public class ChartyPartyRoundDatabaseDao implements ChartyPartyRoundDao {
     public boolean deleteById(int id) {
         final String sql = "DELETE FROM Round WHERE id = ?;";
         return jdbcTemplate.update(sql, id) > 0;
-        
-        
+
     }
 
     private static final class RoundMapper implements RowMapper<Round> {
@@ -146,11 +110,11 @@ public class ChartyPartyRoundDatabaseDao implements ChartyPartyRoundDao {
         public Round mapRow(ResultSet rs, int index) throws SQLException {
             Round round = new Round();
 
-            round.setId(rs.getInt("id"));
-            round.setGameId(rs.getInt("Game_id"));
-            round.setTimestamp(rs.getString("TimeOfGuess"));
-            round.setGuess(rs.getString("Guess"));
-            round.setResult(rs.getString("Score"));
+            round.setId(rs.getInt("roundId"));
+            round.setGameid(rs.getInt("gameId"));
+            round.setWinneruserid(rs.getString("roundWinner"));
+            round.setWinnerycardid(rs.getInt("roundYCard"));
+            round.setXcardid(rs.getInt("roundXCard"));
 
             return round;
         }

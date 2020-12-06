@@ -83,10 +83,13 @@ public class ChartyPartyGameDatabaseDao implements ChartyPartyGameDao {
     }
 
     @Override
-    public boolean deleteById(int id) {
+    public void deleteById(int id) {
+        final String Delete_Round = "DELETE FROM round WHERE gameId = ?;";
+        jdbcTemplate.update(Delete_Round, id) ;
         
-        final String sql = "DELETE FROM game WHERE gameId = ?;";
-        return jdbcTemplate.update(sql, id) > 0;
+        
+        final String Delete_Game = "DELETE FROM game WHERE gameId = ?;";
+       jdbcTemplate.update(Delete_Game, id) ;
     }
 
     private static final class GameMapper implements RowMapper<Game> {
@@ -94,9 +97,11 @@ public class ChartyPartyGameDatabaseDao implements ChartyPartyGameDao {
         @Override
         public Game mapRow(ResultSet rs, int index) throws SQLException {
             String winner=rs.getString("gameWinner");
+            
             if(winner.isEmpty()){
                 winner="";
             }
+            
             Game game = new Game();
             game.setId(rs.getInt("id"));
             game.setEntrycode(rs.getString("entrycode"));
