@@ -113,7 +113,11 @@ public class ChartyPartyUserDatabaseDao implements ChartyPartyUserDao {
         public User mapRow(ResultSet rs, int i) throws SQLException {
             User user = new User();
             user.setId(rs.getString("UID"));
-            user.setUsername(rs.getString("username"));
+            if (rs.getString("username") == null) {
+                user.setUsername(null);
+            } else {
+                user.setUsername(rs.getString("username"));
+            }
             return user;
         }
     }

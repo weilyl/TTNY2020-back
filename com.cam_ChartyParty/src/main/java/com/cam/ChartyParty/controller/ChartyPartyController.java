@@ -1,10 +1,15 @@
 package com.cam.ChartyParty.controller;
 
 import com.cam.ChartyParty.dto.Game;
+import com.cam.ChartyParty.dto.Round;
 import com.cam.ChartyParty.dto.User;
+import com.cam.ChartyParty.dto.Ycard;
 import com.cam.ChartyParty.service.ChartyPartyServiceImpl;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/NEW NAME HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 public class ChartyPartyController {
 
-    Game currentGame;
+    Game currentGame = new Game();
+    int numberOfRoundsInGame = 5;
 
     @Autowired
     ChartyPartyServiceImpl service;
@@ -29,31 +35,81 @@ public class ChartyPartyController {
      *
      * @return code of the new room
      */
-    @PostMapping("/getNewGameCode")
+    @PostMapping("/createNewGameRoom")
     @ResponseStatus(HttpStatus.CREATED)
-    public String generateNewGameCode() {
-        String entrycode = "";
-        return entrycode;
+    public Game generateNewGameRoom() {
+        //generate the code and create the new game in the database
+        //make the currentGame = this game just added to the DB
+        return currentGame;
     }
-    
+
     /**
-     * Endpoint: /createNewUser/gameId
-     * This should be called for every new User entering the game. 
-     * Send the user data in the Request Body.
-     * Send the gameId that they are joining in the URL.
+     * Endpoint: /createNewUser/gameId This should be called for every new User
+     * entering the game. Send the user data in the Request Body.
+     *
      * @param user
-     * @return 
+     * @return
      */
-    @PostMapping("/createNewUser")
-    public User addNewUser(@RequestBody User user){
-        
+    @PostMapping("/createNewUser/{gameId}")
+    public User addNewUser(@RequestBody User user) {
+        //this method will add the user to the user table
+        //Then it will get the users of the current game and add this user to that list
+        //then add it back to the game
+        //if the number of users in the game is >3,
+        //we can return a certain http status code
         return new User();
     }
+
+    @PostMapping("/startGame/{gameId}")
+    public Game startGame() {
+        //get all the data needed to run the operationDao method
+        //also assign the 5 xcards to this game object.
+        //verify that the gameId sent in the URL is the same as what is saved
+
+        //need:
+        //list of all UIDs
+        //gameId
+        //list of all Ycards
+        //assign judge //FRONTEND, keep  info
+        //FRONTEND will need to call on start round
+        return currentGame;
+    }
+    
+    
+    @PostMapping("/startRound/{gameId}/{UID}")
+    public Round startARound(){
+        //this method will create a round object
+        //it will assign one of the x cards to it
+        //the x card will be removed from the list for the currentGame
+        //then for the user, it will return all of their current cards so they can see them
+        //if the user is the judge that round, they will only get one card less than everyone else
+        //FRONTEND will need to call on getCardsForUser() after calling on this .
+        return new Round();
+    }
+    
+    @GetMapping("/startRound/{gameId}/{UID}/cards")
+    public List<Ycard> getCurrentCardsForUser(){
+        //check to see if the user is the current judge. 
+        //if so, remove a random card from them. 
+        //else, return the list of cards for that user
+        //based on the triple table. 
+        //FRONTEND, will need to check to see if the user has one less card than everyone else?
+        //FRONTEND, is is possible to keep track of the number of rounds that have passed?
+        //FRONTEND, if so, then you could just see if the user has 5 - rounds - 1 cards. 
+        return  new ArrayList<Ycard>();
+    }
+    
+    @PostMapping("/submitRound/{gameId}/{UID}/{yCardId}")
+    public void submitRound(){
+        //this method will take in the gameId, the UserId, and the ycardId
+        //It will then store this, WHERE?!?!?!?!
+        //
+    }
     
     
     
-    
-    
+}
+
 //    
 //    
 //    
@@ -175,4 +231,4 @@ public class ChartyPartyController {
 //
 //        return service.deleteRound(id);
 //    }
-}
+

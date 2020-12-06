@@ -1,4 +1,3 @@
-
 package com.cam.ChartyParty.dto;
 
 import java.util.ArrayList;
@@ -10,9 +9,10 @@ import java.util.Objects;
  * @author chelseamiller
  */
 public class User {
+
     private String id;
     private String username;
-   private List<Ycard> hand = new ArrayList();
+    private List<Ycard> hand = new ArrayList();
 
     public String getId() {
         return id;
@@ -76,8 +76,4 @@ public class User {
         return "User{" + "id=" + id + ", username=" + username + ", hand=" + hand + '}';
     }
 
-
-    
-    
-    
 }
