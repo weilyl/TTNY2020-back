@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -28,7 +27,7 @@ public class ChartyPartyGameDatabaseDao implements ChartyPartyGameDao {
 
     @Override
     public Game add(Game game) {
-        final String sql = "INSERT INTO Game(Answer, Status) VALUES(?,?);";
+        final String sql = "INSERT INTO game(entrycode, roundsCompleted, gameWinner, nextJudge) VALUES(?,?,?,?);";
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 
@@ -38,8 +37,10 @@ public class ChartyPartyGameDatabaseDao implements ChartyPartyGameDao {
                     sql,
                     Statement.RETURN_GENERATED_KEYS);
 
-            statement.setString(1, game.getAnswer());
-            statement.setBoolean(2, game.isStatus());
+            statement.setString(1, game.getEntrycode());
+            statement.setInt(2, game.getRoundscompleted());
+            statement.setString(3, game.getWinneruserid());
+            statement.setString(4, game.getNextjudgeid());
             return statement;
 
         }, keyHolder);
@@ -49,28 +50,18 @@ public class ChartyPartyGameDatabaseDao implements ChartyPartyGameDao {
         return game;
     }
 
-    @Override
-    public List<Game> getAll() throws DataNotFoundException {
-        final String sql = "SELECT g.id, g.Answer, g.Status FROM Game g;";
-        List<Game> allGames = jdbcTemplate.query(sql, new GameMapper());
-
-        if (allGames.isEmpty()) {
-            throw new DataNotFoundException("No games have been created yet.");
-        }
-        return allGames;
-    }
 
     @Override
-    public Game findById(int id) throws DataNotFoundException {
+    public Game findByEntryCode(String entryCode) throws DataNotFoundException {
         Game game = null;
 
-        final String sql = "SELECT id, Answer, Status "
-                + "FROM Game WHERE id = ?;";
+        final String sql = "SELECT gameId, entrycode, roundsCompleted, gameWinner, nextJudge "
+                + "FROM game WHERE entrycode = ?;";
         try {
 
-            game = jdbcTemplate.queryForObject(sql, new GameMapper(), id);
+            game = jdbcTemplate.queryForObject(sql, new GameMapper(), entryCode);
         } catch (EmptyResultDataAccessException ex) {
-            throw new DataNotFoundException("Game with ID# " + id + " does not exist.");
+            throw new DataNotFoundException("Game with that entry code does not exist.");
         }
 
         return game;
@@ -78,20 +69,23 @@ public class ChartyPartyGameDatabaseDao implements ChartyPartyGameDao {
 
     @Override
     public boolean update(Game game) {
-        final String sql = "UPDATE Game SET "
-                + "Answer = ?, "
-                + "Status = ? "
-                + "WHERE id = ?;";
+        final String sql = "UPDATE game SET "
+                + "roundsCompleted = ?, "
+                + "gameWinner = ? "
+                + "nextJudge = ? "
+                + "WHERE gameId = ?;";
 
         return jdbcTemplate.update(sql,
-                game.getAnswer(),
-                game.isStatus(),
+                game.getRoundscompleted(),
+                game.getWinneruserid(),
+                game.getNextjudgeid(),
                 game.getId()) > 0;
     }
 
     @Override
     public boolean deleteById(int id) {
-        final String sql = "DELETE FROM Game WHERE id = ?;";
+        
+        final String sql = "DELETE FROM game WHERE gameId = ?;";
         return jdbcTemplate.update(sql, id) > 0;
     }
 
@@ -99,13 +93,21 @@ public class ChartyPartyGameDatabaseDao implements ChartyPartyGameDao {
 
         @Override
         public Game mapRow(ResultSet rs, int index) throws SQLException {
+            String winner=rs.getString("gameWinner");
+            if(winner.isEmpty()){
+                winner="";
+            }
             Game game = new Game();
             game.setId(rs.getInt("id"));
-            game.setAnswer(rs.getString("Answer"));
-            game.setStatus(rs.getBoolean("Status"));
+            game.setEntrycode(rs.getString("entrycode"));
+            game.setRoundscompleted(rs.getInt("roundsCompleted"));
+            game.setWinneruserid(winner);
+            game.setNextjudgeid(rs.getString("nextJudge"));
+           
 
             return game;
         }
 
     }
+
 }
