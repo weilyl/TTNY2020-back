@@ -29,6 +29,14 @@ INSERT INTO `w24ndqvhdse3h5xv`.`round` (`gameId`, `roundWinner`, `roundXCard`, `
 INSERT INTO `w24ndqvhdse3h5xv`.`round` (`gameId`, `roundWinner`, `roundXCard`, `roundYCard`) VALUES ('2', '469033', '4', '5');
 INSERT INTO `w24ndqvhdse3h5xv`.`round` (`gameId`, `roundWinner`, `roundXCard`, `roundYCard`) VALUES ('2', '123456', '5', '7');
 
-
-
+INSERT INTO `w24ndqvhdse3h5xv`.`gameuserycard` (`user_UID`, `game_gameId`, `ycard_yCardId`) VALUES ('123456', '1', '3');
+INSERT INTO `w24ndqvhdse3h5xv`.`gameuserycard` (`user_UID`, `game_gameId`, `ycard_yCardId`) VALUES ('123456', '1', '4');
+INSERT INTO `w24ndqvhdse3h5xv`.`gameuserycard` (`user_UID`, `game_gameId`, `ycard_yCardId`) VALUES ('567890', '1', '1');
+INSERT INTO `w24ndqvhdse3h5xv`.`gameuserycard` (`user_UID`, `game_gameId`, `ycard_yCardId`) VALUES ('567890', '1', '2');
+INSERT INTO `w24ndqvhdse3h5xv`.`gameuserycard` (`user_UID`, `game_gameId`, `ycard_yCardId`) VALUES ('469033', '1', '6');
+INSERT INTO `w24ndqvhdse3h5xv`.`gameuserycard` (`user_UID`, `game_gameId`, `ycard_yCardId`) VALUES ('469033', '1', '5');
+INSERT INTO `w24ndqvhdse3h5xv`.`gameuserycard` (`user_UID`, `game_gameId`, `ycard_yCardId`) VALUES ('892733', '2', '1');
+INSERT INTO `w24ndqvhdse3h5xv`.`gameuserycard` (`user_UID`, `game_gameId`, `ycard_yCardId`) VALUES ('892733', '2', '3');
+INSERT INTO `w24ndqvhdse3h5xv`.`gameuserycard` (`user_UID`, `game_gameId`, `ycard_yCardId`) VALUES ('892733', '2', '4');
+INSERT INTO `w24ndqvhdse3h5xv`.`gameuserycard` (`user_UID`, `game_gameId`, `ycard_yCardId`) VALUES ('892733', '2', '5');
 
