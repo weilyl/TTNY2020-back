@@ -1,5 +1,6 @@
 package com.cam.ChartyParty.dto;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 
@@ -14,6 +15,7 @@ public class Round {
     private String winneruserid;
     private int xcardid;
     private int winnerycardid;
+    private LocalDateTime endTime;
 
     public int getId() {
         return id;
@@ -55,14 +57,23 @@ public class Round {
         this.winnerycardid = winnerycardid;
     }
 
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 83 * hash + this.id;
-        hash = 83 * hash + this.gameid;
-        hash = 83 * hash + Objects.hashCode(this.winneruserid);
-        hash = 83 * hash + this.xcardid;
-        hash = 83 * hash + this.winnerycardid;
+        hash = 89 * hash + this.id;
+        hash = 89 * hash + this.gameid;
+        hash = 89 * hash + Objects.hashCode(this.winneruserid);
+        hash = 89 * hash + this.xcardid;
+        hash = 89 * hash + this.winnerycardid;
+        hash = 89 * hash + Objects.hashCode(this.endTime);
         return hash;
     }
 
@@ -93,14 +104,19 @@ public class Round {
         if (!Objects.equals(this.winneruserid, other.winneruserid)) {
             return false;
         }
+        if (!Objects.equals(this.endTime, other.endTime)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Round{" + "id=" + id + ", gameid=" + gameid + ", winneruserid=" + winneruserid + ", xcardid=" + xcardid + ", winnerycardid=" + winnerycardid + '}';
+        return "Round{" + "id=" + id + ", gameid=" + gameid + ", winneruserid=" + winneruserid + ", xcardid=" + xcardid + ", winnerycardid=" + winnerycardid + ", endTime=" + endTime + '}';
     }
 
-   
+    
+    
+    
 
 }
