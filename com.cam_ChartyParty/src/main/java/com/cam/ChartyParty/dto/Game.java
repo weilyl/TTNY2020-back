@@ -2,8 +2,10 @@
 package com.cam.ChartyParty.dto;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  *
@@ -17,6 +19,7 @@ public class Game {
     private String winneruserid;
     private String nextjudgeid;
     private List<User> users = new ArrayList();
+    private Set<Xcard> xcards= new HashSet();
     
 
     public int getId() {
@@ -67,15 +70,24 @@ public class Game {
         this.entrycode = entrycode;
     }
 
+    public Set<Xcard> getXcards() {
+        return xcards;
+    }
+
+    public void setXcards(Set<Xcard> xcards) {
+        this.xcards = xcards;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + this.id;
-        hash = 97 * hash + Objects.hashCode(this.entrycode);
-        hash = 97 * hash + this.roundscompleted;
-        hash = 97 * hash + Objects.hashCode(this.winneruserid);
-        hash = 97 * hash + Objects.hashCode(this.nextjudgeid);
-        hash = 97 * hash + Objects.hashCode(this.users);
+        int hash = 7;
+        hash = 13 * hash + this.id;
+        hash = 13 * hash + Objects.hashCode(this.entrycode);
+        hash = 13 * hash + this.roundscompleted;
+        hash = 13 * hash + Objects.hashCode(this.winneruserid);
+        hash = 13 * hash + Objects.hashCode(this.nextjudgeid);
+        hash = 13 * hash + Objects.hashCode(this.users);
+        hash = 13 * hash + Objects.hashCode(this.xcards);
         return hash;
     }
 
@@ -109,18 +121,18 @@ public class Game {
         if (!Objects.equals(this.users, other.users)) {
             return false;
         }
+        if (!Objects.equals(this.xcards, other.xcards)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Game{" + "id=" + id + ", entrycode=" + entrycode + ", roundscompleted=" + roundscompleted + ", winneruserid=" + winneruserid + ", nextjudgeid=" + nextjudgeid + ", users=" + users + '}';
+        return "Game{" + "id=" + id + ", entrycode=" + entrycode + ", roundscompleted=" + roundscompleted + ", winneruserid=" + winneruserid + ", nextjudgeid=" + nextjudgeid + ", users=" + users + ", xcards=" + xcards + '}';
     }
     
     
 
-    
-    
-    
 
 }
